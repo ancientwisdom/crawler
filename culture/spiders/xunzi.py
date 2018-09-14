@@ -12,7 +12,7 @@ class XunziSpider(scrapy.Spider):
     def parse(self, response):
         links = response.xpath(
             '//div[@id="content2"]/a[contains(@href,"xunzi/")]/@href').extract()
-        for link in links:
+        for link in links[0:3]:
             yield scrapy.Request(url=self.domain + link, callback=self.parsechapter)
 
     def parsechapter(self, response):
